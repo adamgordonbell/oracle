@@ -187,13 +187,19 @@ export function resolveApiModel(modelValue: string): ModelName {
   if (normalized.includes('claude') && normalized.includes('sonnet')) {
     return 'claude-4.5-sonnet';
   }
-  if (normalized.includes('claude') && normalized.includes('opus')) {
+  if (normalized.includes('claude') && normalized.includes('opus') && normalized.includes('4.1')) {
     return 'claude-4.1-opus';
+  }
+  if (normalized.includes('claude') && normalized.includes('opus')) {
+    return 'claude-4.5-opus';
   }
   if (normalized === 'claude' || normalized === 'sonnet' || /(^|\b)sonnet(\b|$)/.test(normalized)) {
     return 'claude-4.5-sonnet';
   }
-  if (normalized === 'opus' || normalized === 'claude-4.1') {
+  if (normalized === 'opus' || normalized === 'claude-4.5') {
+    return 'claude-4.5-opus';
+  }
+  if (normalized === 'claude-4.1') {
     return 'claude-4.1-opus';
   }
   if (normalized.includes('5.0') || normalized === 'gpt-5-pro' || normalized === 'gpt-5') {
@@ -238,8 +244,11 @@ export function inferModelFromLabel(modelValue: string): ModelName {
   if (normalized.includes('claude') && normalized.includes('sonnet')) {
     return 'claude-4.5-sonnet';
   }
-  if (normalized.includes('claude') && normalized.includes('opus')) {
+  if (normalized.includes('claude') && normalized.includes('opus') && normalized.includes('4.1')) {
     return 'claude-4.1-opus';
+  }
+  if (normalized.includes('claude') && normalized.includes('opus')) {
+    return 'claude-4.5-opus';
   }
   if (normalized.includes('codex')) {
     return 'gpt-5.1-codex';

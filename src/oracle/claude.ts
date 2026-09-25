@@ -129,6 +129,9 @@ export function resolveClaudeModelId(modelName: string): string {
   if (modelName === 'claude-4.5-sonnet' || modelName === 'claude-sonnet-4-5-20241022') {
     return 'claude-sonnet-4-5';
   }
+  if (modelName === 'claude-4.5-opus' || modelName === 'claude-opus-4-5-20251101') {
+    return 'claude-opus-4-5-20251101';
+  }
   if (modelName === 'claude-4.1-opus' || modelName === 'claude-opus-4-1-20240808') {
     return 'claude-opus-4-1';
   }

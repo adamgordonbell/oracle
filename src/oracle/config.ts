@@ -5,7 +5,7 @@ import { countTokens as countTokensAnthropicRaw } from '@anthropic-ai/tokenizer'
 import { stringifyTokenizerInput } from './tokenStringifier.js';
 
 export const DEFAULT_MODEL: ModelName = 'gpt-5.2-pro';
-export const PRO_MODELS = new Set<ProModelName>(['gpt-5.1-pro', 'gpt-5-pro', 'gpt-5.2-pro', 'claude-4.5-sonnet', 'claude-4.1-opus']);
+export const PRO_MODELS = new Set<ProModelName>(['gpt-5.1-pro', 'gpt-5-pro', 'gpt-5.2-pro', 'claude-4.5-sonnet', 'claude-4.5-opus', 'claude-4.1-opus']);
 
 const countTokensAnthropic: TokenizerFn = (input: unknown): number =>
   countTokensAnthropicRaw(stringifyTokenizerInput(input));
@@ -114,6 +114,20 @@ export const MODEL_CONFIGS: Record<KnownModelName, ModelConfig> = {
       outputPerToken: 15 / 1_000_000,
     },
     reasoning: null,
+    supportsBackground: false,
+    supportsSearch: false,
+  },
+  'claude-4.5-opus': {
+    model: 'claude-4.5-opus',
+    apiModel: 'claude-opus-4-5-20251101',
+    provider: 'anthropic',
+    tokenizer: countTokensAnthropic,
+    inputLimit: 200000,
+    pricing: {
+      inputPerToken: 15 / 1_000_000,
+      outputPerToken: 75 / 1_000_000,
+    },
+    reasoning: { effort: 'high' },
     supportsBackground: false,
     supportsSearch: false,
   },
